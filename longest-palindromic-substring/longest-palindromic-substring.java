@@ -1,30 +1,33 @@
 class Solution {
     public String longestPalindrome(String s) {
-        if (s.length() < 2) {
-            return s;
-        }
-        String res = "";
-        for(int i = 0; i < s.length(); i++) {
-            String odd = expandFromMiddle(s, i, i);
-            if (odd.length() > res.length()) {
-                res = odd;
+        boolean dp[][] = new boolean[s.length()][s.length()];
+        int x = 0;
+        int y = 0;
+        int count = 0; 
+        for(int gap = 0; gap < s.length(); gap++) {
+            for(int i = 0, j = gap; j < s.length(); j++, i++) {
+                if (gap == 0) {
+                    dp[i][j] = true;
+                } else if (gap == 1) {
+                    if(s.charAt(i) == s.charAt(j)) {
+                        dp[i][j] = true;
+                    } else {
+                        dp[i][j] = false;
+                    }
+                } else {
+                    if (s.charAt(i) == s.charAt(j) && dp[i + 1][j - 1] == true) {
+                        dp[i][j] = true;
+                    } else {
+                        dp[i][j] = false;
+                    }
+                }
+                if(dp[i][j]) {
+                    count++;
+                    x = i;
+                    y = j;
+                }
             }
-            String even = expandFromMiddle(s, i, i + 1);
-            if(even.length() > res.length()) {
-                res = even;
-            }
         }
-        return res;
-    }
-    public String expandFromMiddle(String s, int left, int right) {
-        if(s == null || left > right) {
-            return "";
-        }
-        
-        while(left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
-            left--;
-            right++;
-        }
-        return s.substring(left + 1, right);
+        return s.substring(x,y + 1);
     }
 }
