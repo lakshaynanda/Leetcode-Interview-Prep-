@@ -10,14 +10,14 @@ class Solution {
             return -1;
         }
         
-        for(int i = 0; i < m - n; i++) {
-            if(haystack.substring(i, i + n).equals(needle)) {
-                return i;
-            }
-        }
-        if (haystack.substring(m - n).equals(needle)) {
-            return m - n;
-        }
-        return -1;
+        // for(int i = 0; i < m - n; i++) {
+        //     if(haystack.substring(i, i + n).equals(needle)) {
+        //         return i;
+        //     }
+        // }
+        // if (haystack.substring(m - n).equals(needle)) {
+        //     return m - n;
+        // }
+        return haystack.indexOf(needle);
     }
 }
