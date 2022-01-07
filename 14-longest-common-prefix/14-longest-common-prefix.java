@@ -1,28 +1,14 @@
 class Solution {
     public String longestCommonPrefix(String[] strs) {
-        if(strs.length == 0 || strs == null) {
-            return "";
-        }
-        return helperdnc(strs, 0, strs.length - 1);
-    }
-    public String helperdnc(String[] strs, int left, int right) {
-        if (left == right) {
-            return strs[left];
-        } else {
-            int mid = left + (right - left) / 2;
-            String lp = helperdnc(strs, left, mid);
-            String rp = helperdnc(strs, mid + 1, right);
-            
-            return commonPart(lp, rp);
-        }
-    }
-    public String commonPart(String lp, String rp) {
-        int min = Math.min(lp.length(), rp.length());
-        for(int i = 0; i < min; i++) {
-            if (lp.charAt(i) != rp.charAt(i)) {
-                return lp.substring(0, i);
+        String prefix = strs[0];
+        for(int i = 1; i < strs.length; i++) {
+            while(strs[i].indexOf(prefix) != 0) {
+                prefix = prefix.substring(0, prefix.length() - 1);
+                if (prefix.length() == 0) {
+                    return "";
+                }
             }
         }
-        return lp.substring(0, min);
+        return prefix;
     }
 }
