@@ -1,20 +1,20 @@
 class Solution {
     public String countAndSay(int n) {
-        if(n == 1) {
+        if (n == 1) {
             return String.valueOf(1);
         }
         return convert(countAndSay(n - 1));
     }
-    public String convert(String n) {
-        char prev = n.charAt(0);
+    public String convert(String s) {
+        char prev = s.charAt(0);
         int freq = 1;
         StringBuilder sb = new StringBuilder();
-        for(int i = 1; i < n.length(); i++) {
-            if (prev != n.charAt(i)) {
+        for(int i = 1; i < s.length(); i++) {
+            if (prev != s.charAt(i)) {
                 sb.append(freq);
                 sb.append(prev);
-                prev = n.charAt(i);
                 freq = 0;
+                prev = s.charAt(i);
             }
             freq++;
         }
