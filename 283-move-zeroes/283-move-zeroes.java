@@ -7,8 +7,8 @@ class Solution {
                 nums[index++] = nums[i];
             }
         }
-        for(int i = index; i < nums.length; i++) {
-            nums[i] = 0;
+        while (index < nums.length) {
+            nums[index++] = 0;
         }
     }
 }
