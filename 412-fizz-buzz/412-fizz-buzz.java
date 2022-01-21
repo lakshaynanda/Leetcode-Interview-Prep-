@@ -2,19 +2,19 @@ class Solution {
     public List<String> fizzBuzz(int n) {
         List<String> res = new ArrayList<>();
         for(int i = 1; i <= n; i++) {
-            boolean divby3 = (i % 3 == 0);
-            boolean divby5 = (i % 5 == 0);
-            
             String ans = "";
+            boolean div3 = (i % 3 == 0);
+            boolean div5 = (i % 5 == 0);
             
-            if(divby3) {
+            if (div3) {
                 ans += "Fizz";
             }
-            if(divby5) {
+            if (div5) {
                 ans += "Buzz";
             }
-            if(ans.equals("")) {
-                ans += Integer.valueOf(i);
+            
+            if (ans.equals("")) {
+                ans += Integer.toString(i);
             }
             res.add(ans);
         }
