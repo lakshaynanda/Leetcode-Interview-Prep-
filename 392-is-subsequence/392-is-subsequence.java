@@ -5,8 +5,8 @@ class Solution {
         if (sLen == 0) {
             return true;
         }
+        int dp[][] = new int[sLen + 1][tLen + 1];
         
-        int[][] dp = new int[sLen + 1][tLen + 1];
         for(int col = 1; col <= tLen; col++) {
             for(int row = 1; row <= sLen; row++) {
                 if (s.charAt(row - 1) == t.charAt(col - 1)) {
