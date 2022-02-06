@@ -3,16 +3,17 @@ class Solution {
         if (strs.length == 0) {
             return new ArrayList();
         }
-        Map<String, List> ans = new HashMap<String, List>();
+        HashMap<String, List> map = new HashMap<>();
         for(String s : strs) {
-            char[] ca = s.toCharArray();
-            Arrays.sort(ca);
-            String key = String.valueOf(ca);
-            if (!ans.containsKey(key)) {
-                ans.put(key, new ArrayList());
+            char ch[] = s.toCharArray();
+            Arrays.sort(ch);
+            String key = String.valueOf(ch);
+            
+            if (!map.containsKey(key)) {
+                map.put(key, new ArrayList());
             }
-            ans.get(key).add(s);
+            map.get(key).add(s);
         }
-        return new ArrayList(ans.values());
+        return new ArrayList(map.values());
     }
 }
