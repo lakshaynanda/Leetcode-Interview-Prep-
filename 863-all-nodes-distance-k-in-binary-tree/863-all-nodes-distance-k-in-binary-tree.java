@@ -8,13 +8,13 @@
  * }
  */
 class Solution {
-    HashMap<TreeNode, TreeNode> parentMap;
+    HashMap<TreeNode, TreeNode> parentmap;
     List<Integer> ans;
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
-        parentMap = new HashMap<>();
+        parentmap = new HashMap<>();
         ans = new ArrayList<>();
-        HashSet<TreeNode> visited = new HashSet<>();
         createParentMap(root);
+        HashSet<TreeNode> visited = new HashSet<>();
         dfs(target, visited, k);
         return ans;
     }
@@ -22,33 +22,32 @@ class Solution {
         if (root == null) {
             return;
         }
-        if (root.left != null) {
-            parentMap.put(root.left, root);
+        if(root.left != null) {
+            parentmap.put(root.left, root);
         }
-        if (root.right != null) {
-            parentMap.put(root.right, root);
+        if(root.right != null) {
+            parentmap.put(root.right, root);
         }
         createParentMap(root.left);
         createParentMap(root.right);
     }
-    public void dfs(TreeNode root, HashSet<TreeNode> visited, int k) {
-        if (root == null) {
+    public void dfs(TreeNode target, HashSet<TreeNode> visited, int k) {
+        if (target == null) {
             return;
         }
-        visited.add(root);
+        visited.add(target);
         if (k == 0) {
-            ans.add(root.val);
+            ans.add(target.val);
             return;
         }
-        if (parentMap.containsKey(root) && !visited.contains(parentMap.get(root))) {
-            dfs(parentMap.get(root), visited, k - 1);
+        if (parentmap.containsKey(target) && !visited.contains(parentmap.get(target))) {
+            dfs(parentmap.get(target), visited, k - 1);
         }
-        
-        if (!visited.contains(root.left)) {
-            dfs(root.left, visited, k - 1);
+        if (!visited.contains(target.left)) {
+            dfs(target.left, visited, k - 1);
         }
-        if (!visited.contains(root.right)) {
-            dfs(root.right, visited, k - 1);
+        if (!visited.contains(target.right)) {
+            dfs(target.right, visited, k - 1);
         }
     }
 }
