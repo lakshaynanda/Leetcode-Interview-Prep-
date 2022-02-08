@@ -12,9 +12,8 @@ class Solution {
             if (div5) {
                 ans += "Buzz";
             }
-            
             if (ans.equals("")) {
-                ans += Integer.toString(i);
+                ans += String.valueOf(i);
             }
             res.add(ans);
         }
