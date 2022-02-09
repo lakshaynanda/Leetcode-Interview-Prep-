@@ -25,7 +25,7 @@ class Solution {
         
         Node node = new Node(head.val, null, null);
         
-        this.visited.put(head, node);
+        visited.put(head, node);
         node.next = copyRandomList(head.next);
         node.random = copyRandomList(head.random);
         
