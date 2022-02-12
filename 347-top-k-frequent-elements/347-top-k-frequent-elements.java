@@ -13,11 +13,11 @@ class Solution {
                 minHeap.poll();
             }
         }
-        int arr[] = new int[k];
+        int res[] = new int[k];
         
         for(int i = 0; i < k; i++) {
-            arr[i] = minHeap.poll();
+            res[i] = minHeap.poll();
         }
-        return arr;
+        return res;
     }
 }
