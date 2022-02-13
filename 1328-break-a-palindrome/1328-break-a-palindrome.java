@@ -5,15 +5,14 @@ class Solution {
         if (length == 1) {
             return "";
         }
-        char[] palin = palindrome.toCharArray();
-        for(int i = 0; i < length/2; i++) {
-            if (palin[i] != 'a') {
-                palin[i] = 'a';
-                return String.valueOf(palin);
+        char[] ch = palindrome.toCharArray();
+        for(int i = 0; i < length / 2; i++) {
+            if(ch[i] != 'a') {
+                ch[i] = 'a';
+                return String.valueOf(ch);
             }
         }
-        
-        palin[length - 1] = 'b';
-        return String.valueOf(palin);
+        ch[length - 1] = 'b';
+        return String.valueOf(ch);
     }
 }
