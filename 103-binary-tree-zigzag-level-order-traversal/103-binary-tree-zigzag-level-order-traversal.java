@@ -15,31 +15,30 @@
  */
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
         if (root == null) {
             return new ArrayList<List<Integer>>();
         }
-        List<List<Integer>> results = new ArrayList<>();
-        DFS(root, 0, results);
-        return results;
+        helper(root, 0, result);
+        return result;
     }
-    public void DFS(TreeNode root, int level, List<List<Integer>> results) {
-        if (level >= results.size()) {
+    public void helper(TreeNode root, int level, List<List<Integer>> result) {
+        if (level >= result.size()) {
             LinkedList<Integer> newlevel = new LinkedList<>();
             newlevel.add(root.val);
-            results.add(newlevel);
+            result.add(newlevel);
         } else {
-            if (level % 2 == 0) {
-                results.get(level).add(root.val);
+            if(level % 2 == 0) {
+                result.get(level).add(root.val);
             } else {
-                results.get(level).add(0, root.val);
+                result.get(level).add(0, root.val);
             }
         }
-        
         if (root.left != null) {
-            DFS(root.left, level + 1, results);
+            helper(root.left, level + 1, result);
         }
         if (root.right != null) {
-            DFS(root.right, level + 1, results);
+            helper(root.right, level + 1, result);
         }
     }
 }
