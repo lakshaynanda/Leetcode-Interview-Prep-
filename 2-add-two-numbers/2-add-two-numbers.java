@@ -17,16 +17,15 @@ class Solution {
             int x = l1 != null ? l1.val : 0;
             int y = l2 != null ? l2.val : 0;
             
-            int sum = carry + x + y;
+            int sum = x + y + carry;
             
             curr.next = new ListNode(sum % 10);
-            carry = sum / 10;
             curr = curr.next;
-            
+            carry = sum / 10;
             if (l1 != null) {
                 l1 = l1.next;
             }
-            if(l2 != null) {
+            if (l2 != null) {
                 l2 = l2.next;
             }
         }
