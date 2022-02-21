@@ -11,7 +11,7 @@ class Solution {
             } else {
                 if (nums[start] % 2 == 0) {
                     start++;
-                } else if(nums[start] % 2 == 1) {
+                } else if (nums[start] % 2 == 1) {
                     end--;
                 }
             }
