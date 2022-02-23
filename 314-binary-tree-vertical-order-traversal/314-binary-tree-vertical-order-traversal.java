@@ -1,53 +1,44 @@
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
 class Solution {
-    List<List<Integer>> list = new ArrayList<>();
-    HashMap<Integer, ArrayList<Integer>> columnMap = new HashMap<>();
-    int min = 0;
-    int max = 0;
-    Queue<Pair<TreeNode, Integer>> queue = new ArrayDeque<>();
-    public List<List<Integer>> verticalOrder(TreeNode root) {
-        if (root == null) {
-            return list;
-        }
-        queue.offer(new Pair(root, 0));
-        while (queue.peek() != null) {
-            bfs();
-        }
-        
-        for(int i = min; i <= max; i++) {
-            list.add(columnMap.get(i));
-        }
-        return list;
-    }
-    public void bfs() {
-        Pair<TreeNode, Integer> p = queue.poll();
-        TreeNode root = p.getKey();
-        int column = p.getValue();
+    HashMap<Integer, ArrayList<Pair<Integer, Integer>>> map;
+    int maxCol;
+    int minCol;
+    
+    public void dfs(TreeNode root, int row, int col) {
         if (root == null) {
             return;
         }
-        if (columnMap.get(column) == null) {
-            columnMap.put(column, new ArrayList<>());
+        maxCol = Math.max(maxCol, col);
+        minCol = Math.min(minCol, col);
+        if(!map.containsKey(col)) {
+            map.put(col, new ArrayList<Pair<Integer, Integer>>());
         }
+        map.get(col).add(new Pair<Integer, Integer>(row, root.val));
+        if (root.left != null) {
+            dfs(root.left, row + 1, col - 1);
+        }
+        if (root.right != null) {
+            dfs(root.right, row + 1, col + 1);
+        }
+    }
+    
+    public List<List<Integer>> verticalOrder(TreeNode root) {
+        map = new HashMap<>();
+        maxCol = 0;
+        minCol = 0;
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        dfs(root, 0, 0);
         
-        columnMap.get(column).add(root.val);
-        min = min > column ? column : min;
-        max = max < column ? column : max;
-        queue.offer(new Pair(root.left, column - 1));
-        queue.offer(new Pair(root.right, column + 1));
+        for(int i = minCol; i <= maxCol; i++) {
+            List<Integer> temp = new ArrayList<>();
+            Collections.sort(map.get(i), (Pair<Integer, Integer> p1, Pair<Integer, Integer> p2) -> p1.getKey() - p2.getKey());
+            for(Pair<Integer, Integer> p : map.get(i)) {
+                temp.add(p.getValue());
+            }
+            result.add(temp);
+        }
+        return result;
     }
 }
