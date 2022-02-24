@@ -15,10 +15,10 @@ class Solution {
 			edge.get(v).add(u);
 		}
         
-        int[] par = new int[n];
+        int[] par = new int[n]; // par = parent
 		par[0] = -1;
-		int[] disc = new int[n];
-		int[] low = new int[n];
+		int[] disc = new int[n]; //disc = discovery rank
+		int[] low = new int[n]; //min rank
 		
 		boolean[] vis = new boolean[n];
 		dfs(0, edge, vis, par, disc, low);
