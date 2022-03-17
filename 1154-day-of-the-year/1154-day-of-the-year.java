@@ -1,29 +1,27 @@
 class Solution {
     public int dayOfYear(String date) {
-        int[] monthDays = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        
-        String dateArr[] = date.split("-");
-        
-        int year = Integer.parseInt(dateArr[0]);
-        int month = Integer.parseInt(dateArr[1]);
-        int day = Integer.parseInt(dateArr[2]);
-        
-        int dayCount = 0;
+        int monthsDays[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         boolean leapYear = false;
+        int countdays = 0;
         
-        if(((year % 4 == 0) && (year % 100!= 0)) || (year%400 == 0)) {
+        String[] arraydate = date.split("-");
+        
+        
+        int year = Integer.parseInt(arraydate[0]);
+        int month = Integer.parseInt(arraydate[1]);
+        int day = Integer.parseInt(arraydate[2]);
+        
+        if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) {
             leapYear = true;
         }
-        
         for(int i = 1; i < month; i++) {
-            dayCount += monthDays[i];
+            countdays += monthsDays[i];
         }
+        countdays += day;
         
-        dayCount += day;
-        
-        if(leapYear && month > 2) dayCount++; 
-        
-        
-        return dayCount;
+        if (leapYear && month > 2) {
+            countdays++;
+        }
+        return countdays;
     }
 }
