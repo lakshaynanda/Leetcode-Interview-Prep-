@@ -2,9 +2,11 @@ class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         Set<String> set = new HashSet<>(wordList);
         Queue<String> queue = new LinkedList<>();
-        queue.add(beginWord);
+        
         int count = 1;
-        while (!queue.isEmpty()) {
+        queue.add(beginWord);
+        
+        while(!queue.isEmpty()) {
             int size = queue.size();
             for(int i = 0; i < size; i++) {
                 char[] current = queue.poll().toCharArray();
