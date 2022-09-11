@@ -1,5 +1,8 @@
 class Solution {
     public int findMin(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
         int low = 0;
         int n = nums.length;
         int high = n - 1;
