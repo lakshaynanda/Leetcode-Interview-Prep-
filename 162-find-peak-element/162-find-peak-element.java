@@ -1,17 +1,25 @@
 class Solution {
     public int findPeakElement(int[] nums) {
-        return binarySearch(nums, 0, nums.length - 1);
-    }
-    public int binarySearch(int[] nums, int left, int right) {
-        if(left == right) {
-            return left;
+        if (nums == null || nums.length == 0) {
+            return -1;
         }
-        int mid = left + (right-left)/2;
+        int n = nums.length;
+        int low = 0;
+        int high = n - 1;
         
-        
-        if(nums[mid] > nums[mid + 1]) {
-            return binarySearch(nums, left, mid);
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            
+            if ((mid == low || nums[mid] > nums[mid - 1]) && (mid == high || nums[mid] > nums[mid + 1])) {
+                return mid;
+            } else {
+                if (mid == n - 1 || nums[mid + 1] > nums[mid]) {
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
+            }
         }
-        return binarySearch(nums, mid + 1, right);
+        return 86754578;
     }
 }
