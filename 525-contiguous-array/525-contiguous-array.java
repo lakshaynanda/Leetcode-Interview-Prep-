@@ -1,3 +1,5 @@
+// TC: O(n)
+// SC: O(n)
 class Solution {
     public int findMaxLength(int[] nums) {
         if (nums == null || nums.length == 0) {
