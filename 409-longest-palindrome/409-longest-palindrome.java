@@ -3,16 +3,17 @@ class Solution {
         if (s == null || s.length() == 0) {
             return 0;
         }
-        int count = 0;
-        HashSet<Character> set = new HashSet();
-        for(int i = 0; i < s.length(); i++) {
-            if (set.contains(s.charAt(i))) {
-                set.remove(s.charAt(i));
-                count += 1;
+        HashSet<Character> set = new HashSet<>();
+        int length = 0;
+        
+        for (char c: s.toCharArray()) {
+            if(set.contains(c)) {
+                length += 2;
+                set.remove(c);
             } else {
-                set.add(s.charAt(i));
+                set.add(c);
             }
         }
-        return !set.isEmpty() ? 2 * count + 1: 2 * count;
+        return set.isEmpty() ? length: length + 1;
     }
 }
