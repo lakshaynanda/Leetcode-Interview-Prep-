@@ -1,3 +1,8 @@
+// TC: O(mn) where m = no of coins in array, n = amount
+// SC: O(mn)
+// Solved on LC? Yes
+// No Problem faced
+
 class Solution {
     public int change(int amount, int[] coins) {
         int m = coins.length;
