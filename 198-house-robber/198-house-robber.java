@@ -1,3 +1,7 @@
+// TC: O(n)
+// SC: O(1)
+// Works on Leetcode
+// No problem faced
 class Solution {
     public int rob(int[] nums) {
         int n = nums.length;
