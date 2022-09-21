@@ -1,3 +1,7 @@
+// TC: O(n*n)
+// SC: O(1)
+// Solved on Leetcode
+// Faced no problem
 class Solution {
     public int minFallingPathSum(int[][] matrix) {
         if (matrix == null || matrix.length == 0) {
