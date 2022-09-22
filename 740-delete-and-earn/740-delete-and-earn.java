@@ -1,3 +1,7 @@
+// TC: O(n + max in nums array)
+// SC: O(max in nums array)
+// Runs on leetcode
+// No problem faced
 class Solution {
     public int deleteAndEarn(int[] nums) {
         if (nums == null || nums.length == 0) {
