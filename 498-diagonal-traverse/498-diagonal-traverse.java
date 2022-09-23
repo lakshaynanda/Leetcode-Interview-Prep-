@@ -1,3 +1,8 @@
+// TC: O(m*n) where m = rows n = cols
+// SC: O(1) because return type is array
+// Works on Leetcode
+// No problem faced
+
 class Solution {
     public int[] findDiagonalOrder(int[][] mat) {
         int n = mat[0].length;
