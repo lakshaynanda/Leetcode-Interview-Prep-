@@ -1,3 +1,8 @@
+// TC: O(n)
+// SC: O(1)
+// Solved on Leetcode
+// No problem
+
 class Solution {
     public void sortColors(int[] nums) {
         if (nums == null || nums.length == 0) {
