@@ -1,3 +1,8 @@
+// TC: O(m + n)
+// SC: O(1)
+// Works on Leetcode
+// No problem
+
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
         int row = matrix.length - 1;
