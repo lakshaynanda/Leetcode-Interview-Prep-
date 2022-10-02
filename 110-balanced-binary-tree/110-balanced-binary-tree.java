@@ -18,14 +18,19 @@ class Solution {
         if (root == null) {
             return true;
         }
-        return Math.abs(height(root.left) - height(root.right)) < 2 && isBalanced(root.left) && isBalanced(root.right);
+        int leftheight = height(root.left);
+        int rightheight = height(root.right);
+        
+        boolean leftSub = isBalanced(root.left);
+        boolean rightSub = isBalanced(root.right);
+        
+        return leftSub && rightSub && (Math.abs(rightheight - leftheight) < 2);
         
     }
-    public int height(TreeNode root) {
+    private int height(TreeNode root) {
         if (root == null) {
             return -1;
         }
-        
         return 1 + Math.max(height(root.left), height(root.right));
     }
 }
