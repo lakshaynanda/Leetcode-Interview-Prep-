@@ -1,42 +1,44 @@
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        Map<Integer, List<Integer>> adjList = new HashMap<>();
-        int[] topological = new int[numCourses];
-        int[] indegree = new int[numCourses];
-        
-        for(int i = 0; i < prerequisites.length; i++) {
-            int src = prerequisites[i][1];
-            int dest = prerequisites[i][0];
-            
-            List<Integer> list = adjList.getOrDefault(src, new ArrayList<>());
-            list.add(dest);
-            adjList.put(src, list);
-            indegree[dest]++;
+        if (numCourses == 0) {
+            return true;
         }
+        int indegrees[] = new int[numCourses];
+        HashMap<Integer, List<Integer>> map = new HashMap<>();
         
+        for(int[] edge: prerequisites) {
+            int in = edge[0];
+            int out = edge[1];
+            
+            indegrees[in] += 1;
+            if (!map.containsKey(out)) {
+                map.put(out, new ArrayList());
+            }
+            map.get(out).add(in);
+        }
         Queue<Integer> q = new LinkedList<>();
+        int coursesCompleted = 0;
         for(int i = 0; i < numCourses; i++) {
-            if (indegree[i] == 0) {
+            if (indegrees[i] == 0) {
                 q.add(i);
+                coursesCompleted++;
             }
         }
         
-        int i = 0;
-        while (!q.isEmpty()) {
-            int node = q.remove();
-            topological[i++] = node;
-            
-            if (adjList.containsKey(node)) {
-                for(Integer neighbour: adjList.get(node)) {
-                    indegree[neighbour]--;
-                    if(indegree[neighbour] == 0) {
-                        q.add(neighbour);
+        while(!q.isEmpty()) {
+            int curr = q.poll();
+            List<Integer> edges = map.get(curr);
+            if(edges!=null) {
+                for(int edge: edges) {
+                    indegrees[edge]--;
+                    if(indegrees[edge] == 0) {
+                        q.add(edge);
+                        coursesCompleted++;
                     }
                 }
-                
             }
         }
-        if (i == numCourses) {
+        if (coursesCompleted == numCourses) {
             return true;
         }
         return false;
